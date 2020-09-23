@@ -1,5 +1,7 @@
-export const currency = 'EUR'
-export const language = 'pt-PT'
+import React from 'react';
+
+export const currency = 'EUR';
+export const language = 'pt-PT';
 
 export const plans = [
     {
@@ -51,7 +53,7 @@ export const plans = [
             },
         ]
     }
-]
+];
 
 export const features = [
   {
