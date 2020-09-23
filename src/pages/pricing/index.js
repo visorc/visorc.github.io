@@ -4,15 +4,91 @@ import Layout from '@theme/Layout';
 import Switch from "react-switch";
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
-import {currency, language, plans, features} from './const.js'; 
-import { CheckOutlined } from '@ant-design/icons';
+import {CheckOutlined} from '@ant-design/icons';
+
+const currency = 'EUR';
+const language = "pt-PT";
+const plans = [
+    {
+        type: 'Free',
+        detail: 'Plano standard com limitações',
+        tiers: []
+    },
+    {
+        type: 'Standard',
+        detail: 'Plano standard',
+        tiers: [
+            {
+                limit: 2,
+                price: 29.90,
+            },
+            {
+                limit: 5,
+                price: 59.80,
+            },
+            {
+                limit: 10,
+                price: 119.60,
+            },
+            {
+                limit: 0,
+                price: 199.90,
+            },
+        ]
+    },
+    {
+        type: 'Premium',
+        detail: 'Plano premium',
+        tiers: [
+            {
+                limit: 2,
+                price: 49.9,
+            },
+            {
+                limit: 5,
+                price: 99.8,
+            },
+            {
+                limit: 10,
+                price: 199.6,
+            },
+            {
+                limit: 0,
+                price: 299.90,
+            },
+        ]
+    }
+];
+const features = [
+  {
+    title: 'Criar orçamento',
+    detail: 'Criar orçamento',
+    plan: 0,
+  },
+  {
+    title: 'Editar orçamento',
+    detail: 'Editar orçamento',
+    plan: 1,
+  },
+  {
+    title: 'Apagar orçamento',
+    detail: 'Apagar orçamento',
+    plan: 2,
+  },
+  ,
+  {
+    title: 'Visualizar orçamento',
+    detail: 'Visualizar orçamento',
+    plan: 0,
+  },
+];
 
 function Badge({description, checked}) {
 
   const spec = !checked ? "badge badge--primary" : "badge badge--secondary";
 
   return (
-  <span class={spec}>{description}</span>
+    <span class={spec}>{description}</span>
   );
 }
 
@@ -142,7 +218,6 @@ function Feature({title, detail, plan}) {
     else
       return <span/>;
   }
-
 
   return (
     <div className={clsx('row', styles.feature)}>
