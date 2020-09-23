@@ -1,12 +1,12 @@
 module.exports = {
   title: 'VisualOrc',
   tagline: 'Software de Gestão para a Construção',
-  url: 'https://visorc.github.io',
+  url: 'https://visualorc.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   favicon: 'img/visualorc.ico',
   organizationName: 'visorc', // Usually your GitHub org/user name.
-  projectName: 'visorc.github.io', // Usually your repo name.
+  projectName: 'visualorc.github.io', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'VisualOrc',
