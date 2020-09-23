@@ -1,0 +1,198 @@
+import React from 'react';
+import clsx from 'clsx';
+import Layout from '@theme/Layout';
+import Switch from "react-switch";
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import styles from './styles.module.css';
+import {currency, language, plans, features} from './const.js'; 
+import { CheckOutlined } from '@ant-design/icons';
+
+function Badge({description, checked}) {
+
+  const spec = !checked ? "badge badge--primary" : "badge badge--secondary";
+
+  return (
+  <span class={spec}>{description}</span>
+  );
+}
+
+function Plan({users, plan, isPerYear}) {
+  
+    if(!users) users = 1;
+
+    let tier = plan.tiers.find(tier => users <= tier.limit || tier.limit == 0);
+
+    function FormatPrice(price) {
+      return price.toLocaleString(language, {style: "currency", currency: currency, maximumFractionDigits: 2});
+    }
+
+    function FormatPlan({price, usersLimit, detail, button}) {
+      return (
+        <div className={clsx('col', styles.plan)}>
+          <h2 className={styles.underline}>{plan.type}</h2>
+          <h1>{price}</h1>
+          <div className='container'>
+            <div className='col'>
+              <p className={styles.planPrice}>{usersLimit}</p>
+              <p className={styles.planOffer}>{detail}</p>
+            </div>
+          </div>
+          {button}
+        </div>
+      )
+    }
+
+    if(plan.tiers.length < 1)
+      return <FormatPlan 
+                price='0 €'
+                usersLimit='Até 2 utilizadores' 
+                detail='Oferta limitada'
+                button={<button className={clsx("button button--primary", styles.planButton)}>Download</button>}
+             />;
+
+    var usersLimit = tier.limit == 0 ? 'Utilizadores ilimitados' : 'Até ' + tier.limit + ' utilizadores';
+
+    if(isPerYear)
+      return <FormatPlan 
+                price={FormatPrice(tier.price * 10)}
+                usersLimit={usersLimit} 
+                detail='2 meses de oferta'
+                button={<button className={clsx("button button--secondary", styles.planButton)}>Registar</button>}
+              />
+    else 
+      return <FormatPlan 
+                price={FormatPrice(tier.price)}
+                usersLimit={usersLimit} 
+                detail={FormatPrice(tier.price * 12) + ' por ano'}
+                button={<button className={clsx("button button--secondary", styles.planButton)}>Registar</button>}
+             />
+
+}
+
+class Price extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {users: 1, isPerYear: false};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleChange(isPerYear) {
+      this.setState({ isPerYear });
+    }
+
+    handleInputChange(event) {
+      const users = (event.target.validity.valid) ? event.target.value : this.state.users;
+      this.setState({users: users});
+    }
+
+    render() {
+      return (
+        <div className={clsx('container', styles.form)}>
+            <div className={clsx('row', styles.label)}>
+              <p className='hero__subtitle'>Quantos utilizadores?</p>
+              <input 
+                  class={clsx('', styles.input)}
+                  type="text"
+                  onChange={this.handleInputChange}
+                  value={this.state.users}
+                  pattern="[0-9]{0,5}"
+              />
+            </div>
+            <div className={clsx('row', styles.billingCycle)}>
+              <Badge description={'Mensal'} checked={this.state.isPerYear}/>
+              <Switch
+                onChange={this.handleChange}
+                checked={this.state.isPerYear}
+                uncheckedIcon={false}
+                checkedIcon={false}
+                className={styles.toggle}
+                onColor='#1daeac'
+                offColor='#1daeac'
+                height={25}
+                width={50}
+                handleDiameter={10}
+              />
+              <Badge description={'Anual'} checked={!this.state.isPerYear}/>
+            </div>
+            <div className={clsx('row', styles.plans)}>
+              <div className={clsx('col', styles.plan)}/>
+                {plans && plans.length > 0 && (
+                  plans.map((props, idx) => (
+                      <Plan 
+                        key={idx} 
+                        users={this.state.users} 
+                        plan={props} 
+                        isPerYear={this.state.isPerYear}
+                      />
+                  ))
+                )}
+            </div>
+          </div>  
+        );
+    }
+}
+
+function Feature({title, detail, plan}) {
+
+  function CheckPlan({planValue, planSelected}) {
+    if(planValue <= planSelected)
+      return <CheckOutlined />;
+    else
+      return <span/>;
+  }
+
+
+  return (
+    <div className={clsx('row', styles.feature)}>
+      <div className={clsx('col text--left', styles.featureCol)}>
+        {title}
+      </div>
+      <div className={clsx('col text--center', styles.featureCol)}>
+        <CheckPlan planValue={plan} planSelected={0} />
+      </div>
+      <div className={clsx('col text--center', styles.featureCol)}>
+        <CheckPlan planValue={plan} planSelected={1} />
+      </div>
+      <div className={clsx('col text--center', styles.featureCol)}>
+        <CheckPlan planValue={plan} planSelected={2} />
+      </div>
+
+    </div>
+  );
+}
+
+function Features() {
+  return (
+    <div className={clsx('container', styles.features)}>
+      <div className={clsx('row', styles.featureHeader)}>
+      </div>
+      {features.map((props, idx) => (
+          <Feature key={idx} {...props} />
+      ))}
+    </div>
+  );
+}
+
+function Pricing() {
+  const context = useDocusaurusContext();
+
+  return (
+    <Layout
+      title={`Preços`}
+      description="Description will go into a meta tag in <head />">
+      <header className={clsx('hero', styles.heroBanner)}>
+        <div className="container">
+          <h1 className="hero__title">Planos e Preços</h1>
+        </div>
+      </header>
+      <main>
+        <Price/>
+        <Features />
+      </main>
+    </Layout>
+  );
+}
+
+export default Pricing;

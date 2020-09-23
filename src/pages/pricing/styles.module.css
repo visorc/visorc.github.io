@@ -1,0 +1,121 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+.underline {
+  text-decoration: underline 1px;
+}
+
+.heroBanner {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.label {
+  grid-column: 1 / span 4;
+  grid-row: 1 / 1;
+  justify-self: center;
+}
+
+.input {
+  text-align: left;
+  height: 40px;
+  width: 110px;
+  font-size: large;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-radius: 10px;
+  border: 1px solid #1daeac;
+  font-weight: bold;
+  color: #1daeac;
+  outline: none;
+ }
+
+ .toggle {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.billingCycle {
+  grid-column: 1 / span 4;
+  grid-row: 2 / 2;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill);
+  width: 70%;
+  border-width: 0.1px;
+  padding-top: 2%;
+}
+
+.plans {
+  grid-column: 1 / 5;
+  grid-row: 3 / 3;
+  border-right: solid gray;
+  border-width: 0.1px;
+  margin-top: 4%;
+}
+
+.plan {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-top: solid gray;
+  border-left: solid gray;
+  border-width: 0.1px;
+}
+
+.planPrice {
+  height: 5px;
+  font-size: smaller;
+}
+
+.planOffer {
+  height: 5px;
+  font-size: smaller;
+  font-weight: bold;
+}
+
+.planButton{
+  margin-top: 5%;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fill);
+  grid-template-rows: auto;
+  width: 70%;
+  margin-bottom: 5%;
+  border-bottom: solid gray;
+  border-right: solid gray;
+  border-width: 0.1px;
+}
+
+.featureHeader {
+  grid-column: 1 / 4;
+  background-color: #20bfbd;
+  height: 5px;
+  border-top: solid gray;
+  border-left: solid gray;
+  border-width: 0.1px;
+  font-weight: bold;
+}
+
+.feature {
+  grid-column: 1 / 4;
+}
+
+.featureCol {
+  height: 50px;
+  padding-top: 10px;
+  padding-left: 15px;
+  border-top: solid gray;
+  border-left: solid gray;
+  border-width: 0.1px;
+}
