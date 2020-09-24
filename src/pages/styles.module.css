@@ -21,6 +21,15 @@
   .heroBanner {
     padding: 2rem;
   }
+  .heroImg {
+    height: 100px;
+  }
+}
+
+@media screen {
+  .heroImg {
+    height: 100px;
+  }
 }
 
 .buttons {
