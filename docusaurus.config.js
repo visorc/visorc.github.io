@@ -6,7 +6,7 @@ module.exports = {
   onBrokenLinks: 'throw',
   favicon: 'img/visualorc.ico',
   organizationName: 'visorc', // Usually your GitHub org/user name.
-  projectName: 'visualorc.github.io', // Usually your repo name.
+  projectName: 'visualorc', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'VisualOrc',
