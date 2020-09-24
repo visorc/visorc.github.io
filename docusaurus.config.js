@@ -1,7 +1,7 @@
 module.exports = {
   title: 'VisualOrc',
   tagline: 'Software de Gestão para a Construção',
-  url: 'https://visualorc.github.io',
+  url: 'https://visorc.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   favicon: 'img/visualorc.ico',
