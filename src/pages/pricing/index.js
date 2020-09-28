@@ -130,16 +130,16 @@ function Plan({users, plan, isPerYear}) {
 
     if(isPerYear)
       return <FormatPlan 
-                price={FormatPrice(tier.price * 10)}
+                price={FormatPrice(tier.price * 12 * 0.8)}
                 usersLimit={usersLimit} 
-                detail='2 meses de oferta'
+                detail='20% desconto'
                 button={<button className={clsx("button button--secondary", styles.planButton)}>Registar</button>}
               />
     else 
       return <FormatPlan 
                 price={FormatPrice(tier.price)}
                 usersLimit={usersLimit} 
-                detail={FormatPrice(tier.price * 12) + ' por ano'}
+                detail={FormatPrice(tier.price * 12) + ' / ano'}
                 button={<button className={clsx("button button--secondary", styles.planButton)}>Registar</button>}
              />
 
@@ -166,15 +166,17 @@ class Price extends React.Component {
     render() {
       return (
         <div className={clsx('container', styles.form)}>
-            <div className={clsx('row', styles.label)}>
-              <p className='hero__subtitle'>Quantos utilizadores?</p>
-              <input 
-                  class={clsx('', styles.input)}
-                  type="text"
-                  onChange={this.handleInputChange}
-                  value={this.state.users}
-                  pattern="[0-9]{0,5}"
-              />
+            <div className={clsx('row', styles.users)}>
+                <div className={styles.usersLabel}>       
+                  Quantos utilizadores?
+                </div>
+                <input 
+                    className={styles.input}
+                    type="text"
+                    onChange={this.handleInputChange}
+                    value={this.state.users}
+                    pattern="[0-9]{0,4}"
+                />
             </div>
             <div className={clsx('row', styles.billingCycle)}>
               <Badge description={'Mensal'} checked={this.state.isPerYear}/>
@@ -193,15 +195,15 @@ class Price extends React.Component {
               <Badge description={'Anual'} checked={!this.state.isPerYear}/>
             </div>
             <div className={clsx('row', styles.plans)}>
-              <div className={clsx('col', styles.plan)}/>
-                {plans && plans.length > 0 && (
-                  plans.map((props, idx) => (
-                      <Plan 
-                        key={idx} 
-                        users={this.state.users} 
-                        plan={props} 
-                        isPerYear={this.state.isPerYear}
-                      />
+              <div className='col'/>
+              {plans && plans.length > 0 && (
+                plans.map((props, idx) => (
+                    <Plan 
+                      key={idx} 
+                      users={this.state.users} 
+                      plan={props} 
+                      isPerYear={this.state.isPerYear}
+                    />
                   ))
                 )}
             </div>
@@ -216,21 +218,24 @@ function Feature({title, detail, plan}) {
     if(planValue <= planSelected)
       return <CheckOutlined />;
     else
-      return <span/>;
+      return <span>-</span>;
   }
 
   return (
     <div className={clsx('row', styles.feature)}>
-      <div className={clsx('col text--left', styles.featureCol)}>
+      <div className={clsx('col', styles.featureName)}>
         {title}
       </div>
-      <div className={clsx('col text--center', styles.featureCol)}>
+      <div className={clsx('col', styles.featureCol)}>
+        <span className={styles.featureDescription}>Free</span>
         <CheckPlan planValue={plan} planSelected={0} />
       </div>
-      <div className={clsx('col text--center', styles.featureCol)}>
+      <div className={clsx('col', styles.featureCol)}>
+        <span className={styles.featureDescription}>Standard</span> 
         <CheckPlan planValue={plan} planSelected={1} />
       </div>
-      <div className={clsx('col text--center', styles.featureCol)}>
+      <div className={clsx('col', styles.featureCol)}>
+        <span className={styles.featureDescription}>Premium</span>
         <CheckPlan planValue={plan} planSelected={2} />
       </div>
 
@@ -242,6 +247,7 @@ function Features() {
   return (
     <div className={clsx('container', styles.features)}>
       <div className={clsx('row', styles.featureHeader)}>
+        Funcionalidades
       </div>
       {features.map((props, idx) => (
           <Feature key={idx} {...props} />
@@ -252,7 +258,7 @@ function Features() {
 
 function Pricing() {
   const context = useDocusaurusContext();
-
+  const {siteConfig = {}} = context;
   return (
     <Layout
       title={`Preços`}
@@ -263,8 +269,8 @@ function Pricing() {
         </div>
       </header>
       <main>
-        <Price/>
-        <Features />
+          <Price/>
+          <Features />
       </main>
     </Layout>
   );

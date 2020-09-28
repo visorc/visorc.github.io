@@ -65,7 +65,7 @@ function Home() {
       <header className={clsx('hero', styles.heroBanner)}>
         <div className='container'>
           <div className="row">
-            <div className={'col'}>
+            <div className='col col--5 col--offset-1'>
               <h1 className="hero__title">{siteConfig.title}</h1>
               <p className="hero__subtitle">{siteConfig.tagline}</p>
               <div className={styles.buttons}>
@@ -75,11 +75,11 @@ function Home() {
                     styles.getStarted,
                   )}
                   to={useBaseUrl('docs/about')}>
-                    Saiba maiis
+                    Saiba mais
                 </Link>
               </div>
             </div>
-            <div className="col">
+            <div className="col col--5">
               <img className={styles.heroImg} src="img/logo.svg" />
             </div>
           </div>
