@@ -175,7 +175,7 @@ class Price extends React.Component {
                     type="text"
                     onChange={this.handleInputChange}
                     value={this.state.users}
-                    pattern="[0-9]{0,4}"
+                    pattern="^[1-9][0-9]{0,3}"
                 />
             </div>
             <div className={clsx('row', styles.billingCycle)}>
