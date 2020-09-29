@@ -7,7 +7,9 @@ import styles from './styles.module.css';
 import {CheckOutlined} from '@ant-design/icons';
 
 const currency = 'EUR';
+
 const language = "pt-PT";
+
 const plans = [
     {
         type: 'Free',
@@ -59,6 +61,7 @@ const plans = [
         ]
     }
 ];
+
 const features = [
   {
     title: 'Criar orçamento',
@@ -269,8 +272,8 @@ function Pricing() {
         </div>
       </header>
       <main>
-          <Price/>
-          <Features />
+        <Price/>
+        <Features />
       </main>
     </Layout>
   );

@@ -57,3 +57,14 @@ isto é importante
 ## Blockquotes
 
 > Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.
+
+
+## Videos
+
+import {Player} from 'video-react';
+
+<Player
+  playsInline
+  poster="/img/visualorc.svg"
+  src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+/>
