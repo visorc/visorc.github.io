@@ -60,7 +60,7 @@ isto é importante
 
 
 ## Videos
-
+import 'video-react/dist/video-react.css';
 import {Player} from 'video-react';
 
 <Player
