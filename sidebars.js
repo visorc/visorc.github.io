@@ -11,6 +11,10 @@ module.exports = {
         'modules/about',
         'modules/budget'
       ]
-    }
+    },
+    {
+      type: 'doc',
+      id: 'doc4'
+    },
   ]
 };
