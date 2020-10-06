@@ -5,14 +5,34 @@ sidebar_label: Sobre
 hide_title: false
 ---
 
+# Title
 ## ola
 ### tudo bem=
+**istto é um texto**
 
+~~The world is flat.~~
+
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media 
+
+Here's a sentence with a footnote. [^1]
+
+[^1]: This is the footnote. 
+
+### My Great Heading {#custom-id}
 
 ### lista:
 
 **item 1**
 * item 2
+* item 3
+
+:::note
+  
+nota
+
+:::
 
 | col 1 | col 2 | col 3
 | - | - | - |
