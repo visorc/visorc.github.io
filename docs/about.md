@@ -8,6 +8,7 @@ hide_title: false
 asdasdas  
 asdasdas
 
+![](../static/img/logo.svg)
 
 # Title
 ## ola
